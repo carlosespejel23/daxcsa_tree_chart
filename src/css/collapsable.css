@@ -1,0 +1,112 @@
+/* collapsable.css */
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset, img { border: 0; }
+address, caption, cite, code, dfn, em, strong, th, var { font-style: normal; font-weight: normal; }
+caption, th { text-align: left; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
+q:before, q:after { content:''; }
+abbr, acronym { border: 0; }
+
+body {
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Styles for the chart container */
+.chart {
+    height: 700px; /* Increased height for better space */
+    width: 100%; /* Occupies the entire available width for better scrollability */
+    max-width: 1200px; /* Maximum width so that it is not too large */
+    margin: 0 auto; /* Centers the chart container if no flexbox is used in body */
+    overflow: hidden; /* Very important for Perfect Scrollbar to control overflows */
+}
+
+/* Node styles */
+.Treant > .node {
+    padding: 10px 15px; /* More padding for nodes */
+    padding-top: 20px;
+    border: 1px solid #484848;
+    border-radius: 5px; /* Slightly rounded edges */
+    background-color: #fff; /* White background for nodes */
+    text-align: center; /* Center the text inside the node */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    transition: background-color 0.3s ease; /* Smooth transition for color changes */
+}
+
+.Treant > .node:hover {
+    background-color: #e0e0e0;
+}
+
+.Treant > .node .text-name {
+    font-weight: bold;
+    color: #0056b3;
+}
+
+.Treant > .node .text-title {
+    font-style: italic;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.Treant > .node .text-contact,
+.Treant > .node .text-desc {
+    font-size: 0.85em;
+    color: #555;
+}
+
+/* Styles for the collapse/expand switch */
+.Treant .collapse-switch {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #999;
+    background: #f8f8f8;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em; /* Size of the sign +/- */
+    line-height: 1;
+    color: #666;
+    cursor: pointer;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.Treant .collapse-switch:hover {
+    background-color: #e0e0e0;
+    transform: translateX(-50%) scale(1.1);
+}
+
+/* The contents of the switch (the +/- sign) */
+.Treant .collapse-switch::before {
+    content: '+'; /* By default, displays a ‘+’ to expand */
+}
+
+.Treant .node.collapsed .collapse-switch::before {
+    content: '+'; /* For the collapsed node, it also displays ‘+’ to expand */
+}
+
+.Treant .node:not(.collapsed) .collapse-switch::before {
+    content: '-'; /* For non-collapsed node, shows ‘-’ for collapsing */
+}
+
+
+/* Estilo para nodos colapsados */
+.Treant .node.collapsed {
+    background-color: #e6f7ff; /* A softer color for collapsed nodes */
+    border-color: #91d5ff; /* Lighter border */
+}

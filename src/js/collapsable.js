@@ -5,9 +5,6 @@ function buildTreeNode(distributor, collapsed = false) {
         return null;
     }
 
-    // Determina el color del punto de estado
-    const statusClass = distributor.status === 'Active' ? 'status-active' : 'status-inactive';
-
     const node = {
         text: {
             name: distributor.full_name ?? "No Name",
@@ -18,7 +15,6 @@ function buildTreeNode(distributor, collapsed = false) {
             // Placement only for purifying purposes
             // placement: distributor.binary_placement ?? "No Placement",
         },
-        HTMLclass: `${statusClass}`,
         collapsed: collapsed,
         children: []
     };
@@ -89,11 +85,6 @@ async function initTreantWithData() {
                 if (chartContainer) {
                     // Initialize Perfect Scrollbar in the chart container
                     $(chartContainer).perfectScrollbar();
-
-                    tree.on('afterUpdate', function() { $(chartContainer).perfectScrollbar('update'); });
-                    setTimeout(() => {
-                        $(chartContainer).perfectScrollbar('update');
-                    }, 800);
                 }
             } else {
                 console.warn("Perfect Scrollbar or jQuery is not loaded. Custom scrolling will not work.");
